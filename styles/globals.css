@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light mode */
+    --forest-dark: 26 35 46;
+    --forest-light: 243 244 246;
+    --forest-accent: 34 197 94;
+    --forest-accent-dark: 21 128 61;
+    --content-bg: 255 255 255;
+    --nav-bg: 255 255 255;
+  }
+
+  [data-theme='night'] {
+    /* Dark mode */
+    --forest-dark: 17 24 39;
+    --forest-light: 229 231 235;
+    --forest-accent: 52 211 153;
+    --forest-accent-dark: 16 185 129;
+    --content-bg: 17 24 39;
+    --nav-bg: 17 24 39;
+  }
+
+  /* Removed * { @apply border-border; } block */
+
+}
+
+/* Update navigation styles */
+.nav-container {
+  @apply fixed top-4 left-1/2 -translate-x-1/2 z-50 px-4 w-full max-w-3xl;
+}
+
+.nav-content {
+  @apply flex items-center justify-between p-2 rounded-full bg-forest-dark/90 backdrop-blur-md border border-forest-accent/20;
+}
+
+.nav-items {
+  @apply flex items-center gap-2 sm:gap-4 overflow-x-auto scrollbar-hide py-2 px-4;
+}
+
+.nav-item {
+  @apply relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full 
+    bg-gradient-to-b from-forest-accent to-forest-accent-dark
+    transition-all duration-300 ease-spring
+    hover:scale-110 active:scale-95 flex-shrink-0
+    focus:outline-none focus:ring-2 focus:ring-forest-accent focus:ring-offset-2 focus:ring-offset-forest-dark;
+}
+
+/* Hide scrollbar but maintain functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  @apply transition-colors duration-300;
+}
+
+.content-section {
+  @apply relative p-6 rounded-lg;
+  background-color: rgb(var(--content-bg) / 0.05);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgb(var(--forest-accent) / 0.1);
+}
+
+.content-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.5rem;
+  padding: 1px;
+  background: linear-gradient(
+    to bottom right,
+    rgb(var(--forest-accent) / 0.2),
+    transparent
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.section-content {
+  @apply relative z-10;
+}
+
+.mushroom-nav-item {
+  @apply relative flex items-center justify-center w-12 h-12 rounded-full 
+    transition-all duration-300 ease-spring
+    hover:scale-110 active:scale-95
+    focus:outline-none focus:ring-2 focus:ring-forest-accent focus:ring-offset-2 focus:ring-offset-forest-dark;
+}
+
+.mushroom-nav-item::before {
+  @apply content-[''] absolute inset-0 rounded-full opacity-0
+    bg-gradient-to-b from-forest-light/20 to-transparent
+    transition-opacity duration-300;
+}
+
+.mushroom-nav-item:hover::before {
+  @apply opacity-100;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+@media (max-width: 640px) {
+  .mushroom-nav-item {
+    @apply w-10 h-10;
+  }
+}
+
+/* Update base opacity values */
+.text-forest-light\/80 {
+  @apply text-forest-light opacity-100;
+}
+
+.text-forest-light\/70 {
+  @apply text-forest-light opacity-100;
+}
+
+.bg-forest-dark\/30 {
+  @apply bg-forest-dark opacity-100;
+}
+
+.bg-forest-dark\/50 {
+  @apply bg-forest-dark opacity-100;
+}
+
+.bg-forest-dark\/90 {
+  @apply bg-forest-dark opacity-100;
+}
+
+.bg-forest-accent\/20 {
+  @apply bg-forest-accent opacity-100;
+}
+
+.bg-forest-accent\/10 {
+  @apply bg-forest-accent opacity-100;
+}
+
